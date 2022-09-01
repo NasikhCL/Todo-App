@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!-- <html lang="en"> -->
+
+<head>
+    <!-- <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>todo App</title>
+    <!-- fontawesome cdn link -->
+    <script src="https://kit.fontawesome.com/a0ced3cb41.js" crossorigin="anonymous"></script>
+    <!-- css link -->
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <!-- todo application body, the full container -->
+    <div id="todo-app">
+    <!-- app title/ heading-->
+        <div id="title">
+            <h1>TODO App</h1>
+        </div>
+
+        <!-- horizontal line to devide the sections -->
+        <div class="horizontal-line"></div>
+
+        <!-- form to sent the data to the backend and store in the database -->
+        <form action="/actions/todo-item" method="post">
+            <!-- the description of the task taking from the user / input box -->
+            <div id="description-container">
+                
+                    <label for="description" id="description-label" class="label-style">DESCRIPTION</label>
+                    <input type="text" name="description" id="description-input" placeholder="what you want to do...?">
+            
+            </div>
+
+            <!-- the category and date choosing for the task -->
+            <div id="catogery-date-container">
+                <div id="choose-category-container" >
+                        <label for="choose-category" id="choose-category-label"  class="label-style">CATEGORY</label>
+                                <select id="choose-category" name="category" class="choose">
+                                    <option value="Other">choose a category</option>
+                                    <option value="Personal">Personal</option>
+                                    <option value="Work">Work</option>
+                                    <option value="School">School</option>
+                                    <option value="Cleaning">Cleaning</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                
+                </div>
+
+                <!-- vertical line to devide the catogery and date choosing sections -->
+                <div class="vertical-line"></div>
+
+                <div id="due-date-container">
+                    <label for="due-date" class="label-style">DUE DATE</label>
+                    <input type="date" name="date" id="due-date" class="choose">
+                </div>
+            </div>
+
+            <!-- horizontal line to devide the sections -->
+            <div class="horizontal-line"></div>
+
+            <!-- add task button and delete task button -->
+            <div id="add-delete-buttons">
+                <button type="submit" id="add-task-btn" class="btn" onclick="addedAlert()"><i class="fa-solid fa-plus"></i> add task</button>
+                <button type="submit" id="delete-tasks-btn" class="btn" form="tasks-list-form" onclick="deletedAlert()"><i class="fa-solid fa-trash"></i> delete tasks</button>
+            </div>
+        </form>
+        <!-- horizontal line to devide the sections -->
+        <div class="horizontal-line"></div>
+        
+        <!-- the added tasks/ todo list is displayed over here inside this section-->
+        <div id="added-tasks-container">
+
+            <!-- form to sent the data od the tasks which all should be deleted -->
+            <form action="actions/delete" method="post" id="tasks-list-form">
+
+            <ul id="display-task">
+                <!-- itraing over the database and displaying the task from database list -->
+                <% for(let i of todo_list){ %>
+                    
+                
+                    <div class="todo-list-item-container">
+
+                        <!-- check box for deleteing the checked list items -->
+                        <input type="checkbox" id="check-to-delete" name="id" value="<%= i.id %>">
+                    
+                            <div class="todo-list-details"><i class="fa-solid fa-calendar"></i> <%= i.date %> </div>
+                        
+                            <div class="todo-category todo-list-details"> <%= i.category %> </div> 
+                        
+                            <div class="todo-description todo-list-details"> <mark> <%= i.description%> </mark> </div>
+                        
+
+                    </div>
+                </li>
+                <!-- horizontal line to devide the sections -->
+                <hr>
+                <% } %>
+                
+            </ul>
+        </form>
+        </div>
+
+    </div>
+<!-- javascript link  -->
+<script src="js/index.js"></script>
+</body>
+
+</html>
