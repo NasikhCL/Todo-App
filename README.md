@@ -1,6 +1,6 @@
 # Todo-App
 
-this is a todolist back end project
+this is a todolist back end project - nodeJs
 
 # "dependencies": {
     "body-parser": "^1.20.0",
